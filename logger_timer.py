@@ -1,5 +1,4 @@
 
-
 def my_logger(org_fnc):
     import logging 
     logging.basicConfig(filename='{}.log'.format(org_fnc.__name__), level=logging.INFO)
