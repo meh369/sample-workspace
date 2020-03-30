@@ -1,64 +1,66 @@
-
 class MergeSort:
-    
-    def __init__(self):
+    '''Takes user args such as len of list and each of the elements to be sorted'''
 
+    def __init__(self):
         self.l = []
         self.n = int(input("enter a number of elements in list: "))
         
-    def feedback_call(self):
-        '''For loop asking user for input element separately'''
 
+    def feedback_call(self):
+        '''Populate list with raw inputs'''
+        
         for i in range(self.n):
             temp = int(input('Enter Element' + str(i + 1) + ': '))
             self.l += [temp]
-        
-
-    def feedback_sort(self, a):
-        # mid-point (length-1)/2 
-        mid = int((len(self.l) - 1)/ 2)
+        return self.l
+    
+    def merge_sort(self, user_input_list):
+        '''Call our algo which takes a mid point to and partition them into two sep lists'''
+        # mid-point = (length-1)/ 2
+        mid = int( (len(user_input_list) - 1)/2 )
         # check if length is greater than (mid + 2), index starts with value zero 
-        if len(self.l) > mid + 2:
-            # partition into two parts (a, b)
-            a = self.feedback_sort(self.l[0:mid])
-            b = self.feedback_sort(self.l[mid:len(self.l)])
+        if len(user_input_list) > 2:
+            # partition into two parts (a, right)
+            left = self.merge_sort(user_input_list[0:mid])
+            right = self.merge_sort(user_input_list[mid:len(user_input_list)])
         # else check if its only 2 element list
-        elif len(self.l) == 2:
-            a = [self.l[0]]
-            b = [self.l[1]]
+        elif len(user_input_list) == 2:
+            left = [user_input_list[0]]
+            right = [user_input_list[1]]
         else:
-            return self.l
-        print(a)
-        print(b)         
+            return user_input_list
 
         # merge in a new list
-        c = 0
-        v = 0 
+        i = 0
+        j = 0
         new = []
-        # index conditions 
-        while (c != len(a) or v != len(b)):
-            if c < len(a) and v < len(b):
-                if a[c] < b[v]:
-                    new.append(a[c])
-                    c += 1
+        # Simple checks 
+        while (i!= len(left) or j != len(right)):
+
+            if i < len(left) and j < len(right):           
+                # Sort comprison and append plus init index counter 
+                if left[i] < right[j]:
+                    new += [left[i]]
+                    i += 1
                 else:
-                    new.append(b[v])
-                    v += 1
+                    new +=[right[j]]
+                    j += 1
+            # if i counter reaches len of left and j doesnt then add jth element      
+            elif i == len(left) and j != len(right):
+                new += [right[j]]
+                j += 1
+            # if j counter reaches len of right and i doesnt then add ith element
+            elif j == len(right) and i != len(left):
+                new += [left[i]]
+                i += 1
 
-            elif c == len(a) and v != len(b):
-                new.append(b[v])
-                v += 1
-
-            elif v == len(b) and c != len(a):
-                new.append(a[c])
-                c += 1
-
-            else: 
+            else:
                 break
 
-        return new 
+        return new
+
 
 if __name__ == "__main__":
     merge_sort = MergeSort()
-    merge_sort.feedback_call()
-    print(merge_sort.feedback_sort([]))
+    callback = merge_sort.feedback_call()
+    print(merge_sort.merge_sort(callback))
