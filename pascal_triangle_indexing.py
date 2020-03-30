@@ -1,8 +1,8 @@
 
 class PascalTriangle:
 
-    def __init__(self, num):
-        self.num = num
+    def __init__(self):
+        self.num = int(input("Enter a number to enumerate Pascal's list: "))
         self.list_1 = []
 
     def populate_list(self):
@@ -24,10 +24,10 @@ class PascalTriangle:
         
         return self.list_1   
 
-    def binomial_coeff(self, j):
-        
+    def binomial_coeff(self):
+        j = int(input("Enter an index number to extract element from the Pasal's list: "))
         pascal_tri = self.populate_list()
-        print(pascal_tri[9])
+        # print(pascal_tri[self.num])
         return (pascal_tri[self.num][j - 1])
 
     def __str__(self):
@@ -35,8 +35,8 @@ class PascalTriangle:
         return f'number selected is {self.num} and pascal triangle is \n {self.populate_list()}'
 
 if __name__ == "__main__":
-    a = PascalTriangle(9)
+    a = PascalTriangle()
     print(a)
     # print(a.populate_list())
-    print(a.binomial_coeff(6))
+    print(a.binomial_coeff())
     
