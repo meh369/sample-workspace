@@ -38,7 +38,7 @@ class MergeSort:
         while (i!= len(left) or j != len(right)):
 
             if i < len(left) and j < len(right):           
-                # Sort comprison and append plus init index counter 
+                # Sort comparison and append plus init index counter 
                 if left[i] < right[j]:
                     new += [left[i]]
                     i += 1
