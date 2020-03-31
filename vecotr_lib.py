@@ -37,7 +37,7 @@ class Vector:
         add =  []
         if size == args.size():
             for i in range(size):
-                add.append(self._components[i] + args[i])
+                add.append(self._components[i] + args.components[i])
         else: 
             raise Exception("Must have same size")
 
@@ -46,5 +46,6 @@ class Vector:
 if __name__ == "__main":
     a = Vector([3,2,1])
     a.set(4)
-    print(a._components())
-    print(a)
+    print(a._components(2))
+    print(a.euclidean_norm())
+    print(a.__add__([6,4,5]))

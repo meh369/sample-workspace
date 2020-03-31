@@ -34,7 +34,7 @@ class Makethreads:
 if __name__=="__main__":
     start = time.perf_counter()
 
-    a = Makethreads(3)
+    a = Makethreads()
     a.populate_thread_list()
     
     finish = time.perf_counter()
